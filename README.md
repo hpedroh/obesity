@@ -1,5 +1,6 @@
 # HealthAnalytics: Predição de Obesidade
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://obesity-risk-app.streamlit.app/)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-red)
 ![Scikit-Learn](https://img.shields.io/badge/Model-RandomForest-green)
@@ -7,6 +8,12 @@
 
 > **Tech Challenge - Fase 4 | Data Analytics**
 > Sistema inteligente para apoio ao diagnóstico clínico e análise de saúde preventiva.
+
+---
+
+## Acesso à Aplicação
+Acesse a aplicação online clicando no link abaixo:
+### [**https://obesity-risk-app.streamlit.app/**](https://obesity-risk-app.streamlit.app/)
 
 ---
 
@@ -28,6 +35,7 @@ A aplicação foi desenvolvida em **Python** utilizando **Streamlit** para a int
 ### 1. Diagnóstico Preditivo (IA)
 * Formulário interativo para coleta de dados do paciente.
 * **Análise de Risco:** Gráfico de probabilidades que mostra a chance de pertencimento a cada classe de obesidade.
+* **Geração de Laudo (PDF):** Download de relatório clínico completo com anamnese, resultados e fatores de risco.
 * **Interpretador:** Feedback automático dos fatores de risco e proteção identificados no perfil.
 
 ### 2. Dashboard Analítico (Business Intelligence)
@@ -67,3 +75,38 @@ Obesity/
 ├── README.md                   # Documentação
 ├── requirements.txt            # Dependências do projeto
 └── utils.py                    # Funções auxiliares (Menu Lateral)
+
+## Como Rodar Localmente
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/hpedroh/obesity.git
+cd obesity
+```
+
+### 2. Crie um ambiente virtual (opcional, mas recomendado):
+
+```Bash
+python -m venv venv
+# Windows: venv\Scripts\activate
+# Linux: source venv/bin/activate  
+```
+
+### 3. Instale as dependências:
+
+```Bash
+pip install -r requirements.txt
+```
+
+### 4. Execute a aplicação:
+
+```Bash
+streamlit run HealthAnalytics.py
+```
+
+## Licença
+
+Este projeto está sob a licença MIT. Sinta-se à vontade para contribuir ou utilizar para fins educacionais.
+
+<div align="center"> Desenvolvido por <b>Pedro Henrique</b> </div>
