@@ -1,0 +1,14 @@
+[theme]
+base = "dark"               # Avisa o Streamlit para usar a base escura
+primaryColor = "#3366CC"    # Mantém o seu Azul (destaque)
+backgroundColor = "#0E1117" # Fundo Preto Suave (Padrão Streamlit Dark)
+secondaryBackgroundColor = "#262730" # Fundo da Sidebar (Cinza Escuro)
+textColor = "#FAFAFA"       # Texto Branco/Gelo
+font = "sans serif"
+
+[server]
+headless = true
+enableCORS = false
+
+[client]
+showSidebarNavigation = false
