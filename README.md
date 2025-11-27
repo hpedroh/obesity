@@ -1,4 +1,4 @@
-# 🏥 HealthAnalytics: Predição de Obesidade
+# HealthAnalytics: Predição de Obesidade
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-red)
@@ -10,7 +10,7 @@
 
 ---
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 Este projeto tem como objetivo auxiliar profissionais de saúde na **identificação precoce de riscos relacionados à obesidade**.
 
@@ -22,7 +22,7 @@ A aplicação foi desenvolvida em **Python** utilizando **Streamlit** para a int
 
 ---
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 ### 1. Diagnóstico Preditivo (IA)
 * Formulário interativo para coleta de dados do paciente (Idade, Peso, Hábitos, etc.).
@@ -37,7 +37,7 @@ A aplicação foi desenvolvida em **Python** utilizando **Streamlit** para a int
 
 ---
 
-## 🗂 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```text
 Obesity/
