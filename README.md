@@ -15,8 +15,9 @@
 Este projeto tem como objetivo auxiliar profissionais de saúde na **identificação precoce de riscos relacionados à obesidade**.
 
 Utilizando um modelo de Machine Learning (**Random Forest Classifier**) treinado com dados clínicos e comportamentais, o sistema oferece:
-1.  **Diagnóstico Preditivo:** Classificação do nível de obesidade com base em inputs do usuário.
+1.  **Diagnóstico Preditivo:** Classificação do nível de obesidade e análise de probabilidade (risco) com base em inputs do usuário.
 2.  **Dashboard Analítico:** Visualização de dados históricos para entender padrões de alimentação, atividade física e fatores genéticos na população.
+3.  **Auditoria de Modelo:** Área técnica para validação das métricas de performance do algoritmo.
 
 A aplicação foi desenvolvida em **Python** utilizando **Streamlit** para a interface web e **Plotly** para visualizações interativas.
 
@@ -25,15 +26,19 @@ A aplicação foi desenvolvida em **Python** utilizando **Streamlit** para a int
 ## Funcionalidades
 
 ### 1. Diagnóstico Preditivo (IA)
-* Formulário interativo para coleta de dados do paciente (Idade, Peso, Hábitos, etc.).
-* Pré-processamento automático dos dados (Pipeline com OneHotEncoder e StandardScaler).
-* Classificação em 7 níveis: *Abaixo do Peso* até *Obesidade Tipo III*.
-* Recomendações automáticas baseadas no resultado.
+* Formulário interativo para coleta de dados do paciente.
+* **Análise de Risco:** Gráfico de probabilidades que mostra a chance de pertencimento a cada classe de obesidade.
+* **Interpretador:** Feedback automático dos fatores de risco e proteção identificados no perfil.
 
 ### 2. Dashboard Analítico (Business Intelligence)
 * **Visão Geral:** Distribuição demográfica, relação Peso x Altura e impacto do histórico familiar.
-* **Fatores de Risco:** Análise profunda de alimentação (Vegetais, Calorias, Água) e sedentarismo.
-* **Explorador Livre:** Ferramenta *Self-Service BI* onde o usuário cria seus próprios gráficos (Scatter, Histograma, Box Plot, Violino) cruzando variáveis e segmentações dinâmicas.
+* **Fatores de Risco:** Análise profunda de alimentação e sedentarismo.
+* **Explorador Livre:** Ferramenta *Self-Service BI* para criação de gráficos dinâmicos.
+
+### 3. Performance do Modelo (Técnico)
+* Visualização da **Matriz de Confusão**.
+* Relatório detalhado de métricas (Acurácia, Precision, Recall, F1-Score).
+* Transparência sobre os dados de teste utilizados.
 
 ---
 
@@ -42,19 +47,23 @@ A aplicação foi desenvolvida em **Python** utilizando **Streamlit** para a int
 ```text
 Obesity/
 │
+├── .streamlit/                 # Configuração de tema (config.toml)
 ├── .venv/                      # Ambiente virtual
 ├── assets/                     # Imagens e logos
 │   └── balanca.png
 ├── data/                       # Base de dados
-│   └── obesity.csv             # Dataset original/processado
+│   └── obesity.csv             # Dataset original
 ├── notebooks/                  # Estudos e modelagem
 │   └── 1_criando_modelo.ipynb  # EDA e Treinamento do Modelo
 ├── pages/                      # Páginas da Aplicação Streamlit
 │   ├── 1_Diagnostico_Preditivo.py
-│   └── 2_Dashboard_Analitico.py
+│   ├── 2_Dashboard_Analitico.py
+│   └── 3_Performance_do_Modelo.py
 ├── saved_model/                # Modelo serializado
-│   └── modelo_obesidade.joblib # Pipeline completa (Pré-proc + Modelo)
+│   └── modelo_obesidade.joblib # Pipeline completa
 ├── .gitignore                  # Arquivos ignorados pelo Git
 ├── HealthAnalytics.py          # Página Inicial (Entrypoint)
+├── LICENSE                     # Licença MIT
 ├── README.md                   # Documentação
-└── requirements.txt            # Dependências do projeto
+├── requirements.txt            # Dependências do projeto
+└── utils.py                    # Funções auxiliares (Menu Lateral)
