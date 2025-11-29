@@ -4,7 +4,8 @@ import plotly.express as px
 import joblib
 import io
 import os
-from utils import sidebar_navegacao
+
+from utils import sidebar_topo, sidebar_rodape 
 from constants import (
     DICT_FCVC_TEXT, DICT_CH2O_TEXT, DICT_FAF_TEXT, DICT_TUE_TEXT,
     DICT_TRADUCAO_GERAL, DICT_COLUNAS_PT, CORES_OBESIDADE, ORDEM_OBESIDADE
@@ -15,7 +16,8 @@ from constants import (
 # ============================================================================
 st.set_page_config(page_title="Dashboard Analítico", layout="wide")
 
-sidebar_navegacao()
+# 1. DESENHA O TOPO (Menu)
+sidebar_topo()
 
 st.title("Dashboard Analítico de Obesidade")
 st.markdown("Explore os dados históricos de forma dinâmica. Utilize os **filtros na barra lateral** para segmentar a análise.")
@@ -109,6 +111,11 @@ if df_raw is not None:
         tue_options = [x for x in tue_order if x in df['Tempo em Tecnologia'].unique()]
         tue_filtro = st.multiselect("Tempo em Tecnologia", options=tue_options, default=tue_options)
         transp_filtro = st.multiselect("Transporte", options=df['Transporte'].unique(), default=df['Transporte'].unique())
+
+    # -------------------------------------------------------------------------
+    # CHAMADA DO RODAPÉ (APÓS OS FILTROS)
+    # -------------------------------------------------------------------------
+    sidebar_rodape()
 
     filtros_query = []
     filtros_query.append("`Nível de Obesidade` in @obesidade_filtro")

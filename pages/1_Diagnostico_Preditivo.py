@@ -6,14 +6,12 @@ from utils import sidebar_navegacao
 from fpdf import FPDF
 import datetime
 import shap
-import matplotlib.pyplot as plt
 
-# --- IMPORTAÇÃO DE CONSTANTES ---
 from constants import (
     DICT_SIM_NAO, DICT_GENERO, DICT_FREQ_CALORICA, DICT_TRANSPORTE,
     DICT_FCVC_NUM, DICT_CH2O_NUM, DICT_FAF_NUM, DICT_TUE_NUM,
     DICT_RESULTADO_PDF, CORES_OBESIDADE,
-    DICT_COLUNAS_PT, DICT_TRADUCAO_GERAL
+    DICT_COLUNAS_PT
 )
 
 # ============================================================================
@@ -41,7 +39,7 @@ except FileNotFoundError:
     st.stop()
 
 # ============================================================================
-# FUNÇÃO: GERADOR DE SUGESTÕES (NOVO)
+# FUNÇÃO: GERADOR DE SUGESTÕES
 # ============================================================================
 def gerar_sugestoes(riscos_identificados):
     """
@@ -204,9 +202,9 @@ def create_pdf(paciente_dados, resultado_final, probs_df, riscos, protecoes, sug
     pdf.set_left_margin(10); pdf.set_right_margin(10)
     pdf.set_y(max(y_end_left, pdf.get_y()) + 10)
 
-    # SEÇÃO 4: SUGESTÕES (NOVO NO PDF)
+    # SEÇÃO 4: SUGESTÕES
     if sugestoes_lista:
-        pdf.set_fill_color(230, 240, 255) # Azul bem claro
+        pdf.set_fill_color(230, 240, 255)
         pdf.set_text_color(0, 50, 100)
         pdf.set_font('Arial', 'B', 11)
         pdf.cell(0, 8, '  DIRETRIZES DE BEM-ESTAR (Baseadas no perfil)', 0, 1, 'L', fill=True)
@@ -215,7 +213,6 @@ def create_pdf(paciente_dados, resultado_final, probs_df, riscos, protecoes, sug
         pdf.set_text_color(50)
         pdf.set_font('Arial', '', 9)
         for dica in sugestoes_lista:
-            # Remove formatação markdown (**texto**) para o PDF
             dica_clean = dica.replace('**', '')
             pdf.multi_cell(0, 5, f"> {dica_clean}")
             pdf.ln(1)
@@ -359,8 +356,7 @@ if submit_button:
         fatores_risco = [f"{row['Nome Amigável']} (+{row['Impacto']:.1%})" for _, row in top_riscos.iterrows()]
         fatores_protecao = [f"{row['Nome Amigável']} ({row['Impacto']:.1%})" for _, row in top_protecoes.iterrows()]
 
-        # --- GERAÇÃO DE SUGESTÕES (NOVO) ---
-        # Passamos a lista de "nomes amigáveis" que são riscos para a função
+        # --- GERAÇÃO DE SUGESTÕES  ---
         lista_riscos_amigaveis = top_riscos['Nome Amigável'].tolist()
         sugestoes_geradas = gerar_sugestoes(lista_riscos_amigaveis)
 
@@ -372,7 +368,7 @@ if submit_button:
             'df_probs': df_probs,
             'riscos': fatores_risco,
             'protecoes': fatores_protecao,
-            'sugestoes': sugestoes_geradas, # Salva as sugestões
+            'sugestoes': sugestoes_geradas, 
             'df_shap_grouped': df_shap_grouped,
             'pdf_context': {
                 'Nome': nome_paciente if nome_paciente else "Não Informado",
@@ -412,10 +408,10 @@ if st.session_state.get('diagnostico_realizado'):
         with c_pdf:
             pdf_bytes = create_pdf(
                 res['pdf_context'], res['predicao_pt'], res['df_probs'], 
-                res['riscos'], res['protecoes'], res['sugestoes'] # Passando sugestões para o PDF
+                res['riscos'], res['protecoes'], res['sugestoes']
             )
             nome_clean = res['pdf_context']['Nome'].split()[0] if res['pdf_context']['Nome'] != "Não Informado" else "paciente"
-            st.download_button("Baixar Laudo PDF", pdf_bytes, f"laudo_{nome_clean}.pdf", "application/pdf", type="primary")
+            st.download_button("📄 Baixar Laudo PDF", pdf_bytes, f"laudo_{nome_clean}.pdf", "application/pdf", type="primary")
 
         st.markdown("#### Certeza do Modelo")
         fig_probs = px.bar(
@@ -427,11 +423,11 @@ if st.session_state.get('diagnostico_realizado'):
         st.plotly_chart(fig_probs, use_container_width=True)
 
     # ---------------------------------------------------------------------
-    # SUGESTÕES (NOVO BLOCO NA UI)
+    # SUGESTÕES
     # ---------------------------------------------------------------------
     if res['sugestoes']:
         with st.container(border=True):
-            st.subheader("Sugestões de Hábitos Saudáveis")
+            st.subheader("💡 Sugestões de Hábitos Saudáveis")
             st.caption("Abaixo estão diretrizes gerais baseadas nos fatores de risco identificados pelo sistema.")
             for dica in res['sugestoes']:
                 st.info(dica)

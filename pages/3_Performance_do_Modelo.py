@@ -6,13 +6,15 @@ import plotly.graph_objects as go
 import os
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
-from utils import sidebar_navegacao
+from utils import sidebar_topo, sidebar_rodape
 
 # ============================================================================
 # 1. CONFIGURAÇÃO DA PÁGINA
 # ============================================================================
 st.set_page_config(page_title="Performance do Modelo", layout="wide")
-sidebar_navegacao()
+
+# AJUSTE AQUI: Menu no topo
+sidebar_topo()
 
 st.title("Performance e Validação do Modelo")
 st.markdown("""
@@ -139,6 +141,8 @@ if df is not None:
     )
     
     st.info("**Nota:** O modelo apresenta excelente performance nas classes extremas (Abaixo do Peso e Obesidade III), com ligeira confusão entre os níveis de Sobrepeso, o que é esperado devido à proximidade dos limites de IMC.")
+
+    sidebar_rodape()
 
 else:
     st.warning("Aguardando dados...")

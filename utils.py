@@ -1,14 +1,10 @@
 import streamlit as st
 
-def sidebar_navegacao():
-    """
-    Função para criar a barra lateral personalizada em todas as páginas.
-    """
+def sidebar_topo():
 
     st.markdown(
         """
         <style>
-        /* Ajusta a largura apenas quando a barra está aberta */
         section[data-testid="stSidebar"][aria-expanded="true"] {
             min-width: 300px;
             max-width: 600px;
@@ -51,14 +47,20 @@ def sidebar_navegacao():
     
     st.sidebar.markdown("---")
 
+def sidebar_rodape():
+
     st.sidebar.caption("Acesso ao Código")
     
     st.sidebar.link_button(
         label="Ver Repositório GitHub", 
-        url="https://github.com/hpedroh/obesity#",
+        url="https://github.com/hpedroh/obesity",
         use_container_width=True,
         type="secondary"
     )
     
     st.sidebar.markdown("---")
-    st.sidebar.caption("© 2025 | Desenvolvido por **Pedro Henrique**")
+    st.sidebar.caption("2025 | Desenvolvido por **Pedro Henrique**")
+
+def sidebar_navegacao():
+    sidebar_topo()
+    sidebar_rodape()
