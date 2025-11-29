@@ -3,6 +3,7 @@ import pandas as pd
 import joblib
 import plotly.express as px
 import plotly.graph_objects as go
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
 from utils import sidebar_navegacao
@@ -11,7 +12,7 @@ from utils import sidebar_navegacao
 # 1. CONFIGURAÇÃO DA PÁGINA
 # ============================================================================
 st.set_page_config(page_title="Performance do Modelo", layout="wide")
-sidebar_navegacao() # Menu Lateral
+sidebar_navegacao()
 
 st.title("Performance e Validação do Modelo")
 st.markdown("""
@@ -20,23 +21,21 @@ Os dados apresentados referem-se ao **Conjunto de Teste (20% dos dados)**, que o
 """)
 
 # ============================================================================
-# 2. CARREGAMENTO E PREPARAÇÃO (Idêntico ao Treino para garantir fidelidade)
+# 2. CARREGAMENTO E PREPARAÇÃO
 # ============================================================================
 @st.cache_data
 def load_and_prep_data():
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    file_path = os.path.join(base_dir, 'data', 'obesity.csv')
+    
     try:
-        try:
-            df = pd.read_csv('data/obesity.csv')
-        except:
-            df = pd.read_csv('../data/obesity.csv')
+        df = pd.read_csv(file_path)
             
         if 'NObeyesdad' in df.columns:
             df.rename(columns={'NObeyesdad': 'Obesity'}, inplace=True)
         elif 'Obesity' in df.columns:
             df.rename(columns={'Obesity': 'Obesity'}, inplace=True)
             
-        # --- TRATAMENTO DE RUÍDO (CRÍTICO) ---
-        # Réplica exata do passo de limpeza do notebook de treino
         cols_to_round = ['FCVC', 'NCP', 'CH2O', 'FAF', 'TUE']
         for col in cols_to_round:
             if col in df.columns:
@@ -47,25 +46,29 @@ def load_and_prep_data():
         st.error(f"Erro ao carregar dados: {e}")
         return None
 
-# Carrega Modelo e Dados
-pipeline = joblib.load('saved_model/modelo_obesidade.joblib')
+try:
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    model_path = os.path.join(base_dir, 'saved_model', 'modelo_obesidade.joblib')
+    pipeline = joblib.load(model_path)
+except:
+    st.error("Erro ao carregar o modelo. Verifique o caminho 'saved_model/modelo_obesidade.joblib'")
+    st.stop()
+
 df = load_and_prep_data()
 
 if df is not None:
-    # Divisão Treino/Teste (Recriando o cenário de validação)
     X = df.drop('Obesity', axis=1)
     y = df['Obesity']
     
-    # IMPORTANTE: random_state=42 garante que o X_test seja IGUAL ao do notebook
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
     
-    # Gera Predições
     y_pred = pipeline.predict(X_test)
     
     # ============================================================================
     # 3. MÉTRICAS GERAIS (LINHA DE TOPO)
     # ============================================================================
     st.markdown("### Métricas Globais (Test Set)")
+    st.caption("Visão geral do desempenho do modelo em dados desconhecidos.")
     c1, c2, c3, c4 = st.columns(4)
     
     acc = accuracy_score(y_test, y_pred)
@@ -84,16 +87,14 @@ if df is not None:
     # 4. MATRIZ DE CONFUSÃO (VISUAL)
     # ============================================================================
     st.subheader("Matriz de Confusão")
-    st.caption("Compare o **Valor Real** (Eixo Y) com o **Valor Predito** (Eixo X). A diagonal principal mostra os acertos.")
+    st.caption("**Como ler:** O eixo Y mostra o que a pessoa *realmente* tem. O eixo X mostra o que o modelo *disse* que ela tinha. Quanto mais azul na diagonal principal, melhor (acertos).")
     
-    # Gera a matriz
     labels_ordenadas = [
         'Insufficient_Weight', 'Normal_Weight', 
         'Overweight_Level_I', 'Overweight_Level_II',
         'Obesity_Type_I', 'Obesity_Type_II', 'Obesity_Type_III'
     ]
     
-    # Mapeia para nomes curtos (PT) para caber no gráfico
     dict_labels_curtos = {
         'Insufficient_Weight': 'Abaixo', 'Normal_Weight': 'Normal',
         'Overweight_Level_I': 'Sobrepeso I', 'Overweight_Level_II': 'Sobrepeso II',
@@ -102,7 +103,6 @@ if df is not None:
     
     cm = confusion_matrix(y_test, y_pred, labels=labels_ordenadas)
     
-    # Cria gráfico Heatmap
     fig_cm = px.imshow(
         cm,
         text_auto=True,
@@ -121,20 +121,20 @@ if df is not None:
     # 5. RELATÓRIO DETALHADO POR CLASSE
     # ============================================================================
     st.subheader("Relatório Detalhado por Classe")
+    st.caption("**Precision:** Confiança do acerto. **Recall:** Capacidade de detecção. **Support:** Quantas pessoas desse tipo existiam no teste.")
     
-    # Gera o report em formato de dicionário para converter em DataFrame
     report_dict = classification_report(y_test, y_pred, output_dict=True)
     df_report = pd.DataFrame(report_dict).transpose()
     
-    # Filtra apenas as classes (remove linhas de média)
     df_report = df_report.loc[labels_ordenadas]
     
-    # Traduz os índices
     df_report.index = df_report.index.map(dict_labels_curtos)
     
-    # Formatação visual da tabela (Highlight nos melhores valores)
     st.dataframe(
-        df_report.style.format("{:.1%}").background_gradient(cmap="Greens", subset=['precision', 'recall', 'f1-score']),
+        df_report.style
+        .format("{:.1%}", subset=['precision', 'recall', 'f1-score'])
+        .format("{:.0f}", subset=['support'])
+        .background_gradient(cmap="Greens", subset=['precision', 'recall', 'f1-score']),
         use_container_width=True
     )
     

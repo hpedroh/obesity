@@ -25,11 +25,8 @@ def sidebar_navegacao():
     
     st.sidebar.subheader("Navegação")
     
-    # Botões de Navegação (st.page_link é NATIVO e muito rápido)
-    # Dica: Use use_container_width=True para ficar igual ao do seu amigo (preenchendo tudo)
-    
     st.sidebar.page_link(
-        "HealthAnalytics.py", # Nome exato do seu arquivo principal
+        "HealthAnalytics.py",
         label="Página Inicial", 
         use_container_width=True
     )
