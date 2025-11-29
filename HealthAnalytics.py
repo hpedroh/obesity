@@ -4,9 +4,8 @@ from utils import sidebar_navegacao
 # ============================================================================
 # 1. CONFIGURAÇÃO INICIAL DA PÁGINA
 # ============================================================================
-# Define o título da aba do navegador, layout (wide) e estado inicial da barra lateral.
 st.set_page_config(
-    page_title="HealthAnalytics - Obesidade",
+    page_title="HealthAnalytics - Home",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -17,99 +16,102 @@ st.set_page_config(
 sidebar_navegacao()
 
 # ============================================================================
-# 3. CORPO PRINCIPAL (MAIN PAGE)
+# 3. CORPO PRINCIPAL (HERO SECTION)
 # ============================================================================
 
-# Cabeçalho principal: Título do projeto e subtítulo explicativo.
+# Cabeçalho com Emojis para modernizar
 st.title("Sistema Inteligente de Predição de Obesidade")
-st.subheader("Utilizando Inteligência Artificial para apoio ao diagnóstico clínico e saúde preventiva.")
+st.subheader("Inteligência Artificial Explicável (XAI) para apoio ao diagnóstico clínico.")
 
-st.markdown("---") # Linha divisória horizontal
+st.markdown("---") 
 
-# Layout de Colunas: Divide a tela em proporção 2:1 (Texto ocupa 2/3, Imagem ocupa 1/3).
+# Layout de Colunas: Texto (2) vs Imagem (1)
 col1, col2 = st.columns([2, 1])
 
-# Coluna 1: Descrição do Projeto e Funcionalidades
+# Coluna 1: Pitch do Projeto
 with col1:
-    st.markdown("### Objetivo")
+    st.markdown("### Objetivo do Sistema")
     st.write("""
-    Este projeto foi desenvolvido para auxiliar profissionais de saúde na **identificação precoce de riscos relacionados à obesidade**. 
-    Utilizando algoritmos de Machine Learning treinados com dados clínicos e comportamentais, o sistema é capaz de classificar o nível de obesidade de um paciente.
-    
-    **Principais Funcionalidades:**
-    * **Diagnóstico em Tempo Real:** Previsão instantânea baseada em formulário interativo.
-    * **Análise de Fatores de Risco:** Identificação de padrões alimentares e de rotina que impactam a saúde.
-    * **Suporte à Decisão:** Ferramenta complementar para triagem e encaminhamento médico.
+    Este projeto utiliza algoritmos de **Machine Learning (Random Forest)** para identificar riscos de obesidade com alta precisão. 
+    Mais do que apenas classificar, o sistema explica o **porquê** da decisão e gera documentação clínica automática.
     """)
+    
+    st.markdown("#### Funcionalidades Avançadas:")
+    st.success("**IA Explicável (SHAP):** Entenda matematicamente quais fatores aumentaram ou diminuíram o risco do paciente.")
+    st.info("**Laudos Médicos (PDF):** Gere relatórios completos com anamnese e diagnóstico prontos para impressão.")
+    st.warning("**Dashboard Interativo:** Explore tendências populacionais com filtros dinâmicos e mapas de calor.")
 
-# Coluna 2: Elemento Visual (Imagem ilustrativa)
+# Coluna 2: Imagem
 with col2:
-    st.image("assets/balanca.png", caption="Saúde & Tecnologia", width=256)
+    st.image("assets/balanca.png", caption="HealthAnalytics v2.0", use_container_width=True)
 
 st.markdown("---")
 
 # ============================================================================
-# 4. GUIA DE NAVEGAÇÃO (LINKS INTERNOS)
+# 4. GUIA DE NAVEGAÇÃO (CARTÕES)
 # ============================================================================
-st.markdown("### Como navegar no sistema")
+st.markdown("### Escolha um módulo para iniciar")
 
-# Cria duas colunas iguais para os cartões de navegação
 c1, c2, c3 = st.columns(3)
 
-# Altura fixa para garantir alinhamento (Ajuste o px se precisar mais/menos espaço)
-altura_descricao = "min-height: 100x; display: flex; align-items: center;"
-
-# Bloco de Navegação: Diagnóstico Preditivo
+# --- Card 1: Diagnóstico ---
 with c1:
     with st.container(border=True):
-        st.info("**1. Diagnóstico Preditivo**")
-        st.markdown(f"""
-        <div style="{altura_descricao}">
-            Acesse esta página para realizar uma nova consulta. Preencha os dados biométricos e comportamentais do paciente para obter a classificação de risco.
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("####")
-        st.page_link("pages/1_Diagnostico_Preditivo.py", label="Ir para Diagnóstico", use_container_width=True)
+        st.subheader("Diagnóstico IA")
+        st.markdown("""
+        Realize consultas individuais. Preencha o formulário biométrico e receba a classificação imediata.
+        
+        **Inclui:**
+        * Gráfico de Risco
+        * Análise SHAP (Waterfall)
+        * Download de PDF
+        """)
+        st.markdown("###")
+        st.page_link("pages/1_Diagnostico_Preditivo.py", label="Acessar Diagnóstico", use_container_width=True)
 
-# Bloco de Navegação: Dashboard Analítico
+# --- Card 2: Dashboard ---
 with c2:
     with st.container(border=True):
-        st.info("**2. Dashboard Analítico**")
-        st.write(f"""
-        <div style="{altura_descricao}">
-            Explore os dados históricos e insights visuais. Entenda as correlações entre hábitos (alimentação, exercícios) e os níveis de obesidade na população estudada.
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("####")
-        st.page_link("pages/2_Dashboard_Analitico.py", label="Ir para Dashboard", use_container_width=True)
+        st.subheader("Dashboard BI")
+        st.markdown("""
+        Visão macroscópica dos dados. Entenda correlações entre hábitos alimentares, sedentarismo e peso.
+        
+        **Inclui:**
+        * Filtros Cruzados
+        * Mapas de Calor
+        * Exportação (Excel/CSV)
+        """)
+        st.markdown("###")
+        st.page_link("pages/2_Dashboard_Analitico.py", label="Acessar Dashboard", use_container_width=True)
 
-# CARD 3: PERFORMANCE
+# --- Card 3: Performance ---
 with c3:
     with st.container(border=True):
-        st.info("**3. Performance do Modelo**")
-        st.write(f"""
-        <div style="{altura_descricao}">
-            Área técnica. Visualize métricas de acurácia, matriz de confusão e validação do algoritmo Random Forest.
-        </div>
-        """, unsafe_allow_html=True)
-        st.markdown("####")
+        st.subheader("Métricas Técnicas")
+        st.markdown("""
+        Área de auditoria e validação do modelo. Veja como o algoritmo se comporta em dados de teste.
+        
+        **Inclui:**
+        * Acurácia e F1-Score
+        * Matriz de Confusão
+        * Relatório por Classe
+        """)
+        st.markdown("###")
         st.page_link("pages/3_Performance_do_Modelo.py", label="Ver Performance", use_container_width=True)
 
 st.markdown("---")
 
 # ============================================================================
-# 5. RODAPÉ (DISCLAIMER E CRÉDITOS)
+# 5. RODAPÉ
 # ============================================================================
-# Aviso legal importante para sistemas de saúde (Disclaimer)
 st.warning("""
-**Aviso Importante:** Este sistema é uma ferramenta de **apoio à decisão** e não substitui o diagnóstico clínico realizado por um médico. 
-Os resultados devem ser interpretados em conjunto com exames laboratoriais e avaliação presencial.
+**Aviso Legal:** Este sistema é uma ferramenta de **apoio à decisão** baseada em dados estatísticos. 
+Ele não substitui, sob nenhuma hipótese, o diagnóstico clínico e a avaliação presencial realizada por um médico qualificado.
 """)
 
-# Créditos do desenvolvedor e informações técnicas do modelo (HTML centralizado)
 st.markdown("""
-<div style="text-align: center; color: grey; font-size: 12px;">
-    Desenvolvido por Pedro Henrique | Tech Challenge Fase 4 - Data Analytics<br>
-    Modelo de Machine Learning: Random Forest Classifier | Acurácia: ~94%
+<div style="text-align: center; color: grey; font-size: 12px; margin-top: 20px;">
+    © 2025 HealthAnalytics | Desenvolvido por <b>Pedro Henrique</b><br>
+    Tech Challenge Fase 4 - Data Analytics | Modelo: Random Forest Classifier
 </div>
 """, unsafe_allow_html=True)
