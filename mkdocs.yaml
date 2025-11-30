@@ -6,24 +6,27 @@ repo_url: https://github.com/hpedroh/obesity
 theme:
   name: material
   language: pt
-  palette: 
-    # Configuração do Modo Claro (Padrão)
-    - scheme: default
-      primary: teal
-      accent: purple
-      toggle:
-        icon: material/brightness-4
-        name: Alternar para modo escuro
-    # Configuração do Modo Escuro
-    - scheme: slate
-      primary: teal
-      accent: lime
-      toggle:
-        icon: material/brightness-7
-        name: Alternar para modo claro
   features:
     - navigation.tabs
     - content.code.copy
+  palette:
+    # 1. Configuração automática para quem usa MODO CLARO no sistema
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/brightness-7
+        name: Alternar para modo escuro
+
+    # 2. Configuração automática para quem usa MODO ESCURO no sistema
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Alternar para modo claro
 
 markdown_extensions:
   - admonition
