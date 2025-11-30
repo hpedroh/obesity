@@ -59,7 +59,7 @@ def sidebar_rodape():
     )
     
     st.sidebar.markdown("---")
-    st.sidebar.caption("2025 | Desenvolvido por **Pedro Henrique**")
+    st.sidebar.caption("2025 | Desenvolvido por **Pedro Alves**")
 
 def sidebar_navegacao():
     sidebar_topo()

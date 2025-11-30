@@ -111,7 +111,7 @@ Ele não substitui, sob nenhuma hipótese, o diagnóstico clínico e a avaliaç�
 
 st.markdown("""
 <div style="text-align: center; color: grey; font-size: 12px; margin-top: 20px;">
-    © 2025 HealthAnalytics | Desenvolvido por <b>Pedro Henrique</b><br>
+    © 2025 HealthAnalytics | Desenvolvido por <b>Pedro Alves</b><br>
     Tech Challenge Fase 4 - Data Analytics | Modelo: Random Forest Classifier
 </div>
 """, unsafe_allow_html=True)
