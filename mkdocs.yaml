@@ -7,15 +7,20 @@ theme:
   name: material
   language: pt
   palette: 
+    # Configuração do Modo Claro (Padrão)
     - scheme: default
       primary: teal
       accent: purple
+      toggle:
+        icon: material/brightness-4
+        name: Alternar para modo escuro
+    # Configuração do Modo Escuro
     - scheme: slate
       primary: teal
       accent: lime
       toggle:
-        icon: material/brightness-4
-        name: Mudo para modo escuro
+        icon: material/brightness-7
+        name: Alternar para modo claro
   features:
     - navigation.tabs
     - content.code.copy
