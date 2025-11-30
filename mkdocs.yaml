@@ -1,0 +1,36 @@
+site_name: HealthAnalytics Docs
+site_description: Documentação do Sistema de Predição de Obesidade
+site_author: Pedro Alves
+repo_url: https://github.com/hpedroh/obesity
+
+theme:
+  name: material
+  language: pt
+  palette: 
+    - scheme: default
+      primary: teal
+      accent: purple
+    - scheme: slate
+      primary: teal
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Mudo para modo escuro
+  features:
+    - navigation.tabs
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - attr_list
+
+nav:
+  - Início: index.md
+  - Documentação da Modelagem: modeling.md
+  - Guia de Instalação: installation.md
+  - Guia do Usuário: user_guide.md
+  - Detalhes Técnicos: technical.md
