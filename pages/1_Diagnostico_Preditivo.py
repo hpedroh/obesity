@@ -26,16 +26,28 @@ st.set_page_config(
 sidebar_navegacao()
 
 # ============================================================================
-# 2. CARREGAMENTO DO MODELO
+# 2. CARREGAMENTO DOS ATIVOS (MODELO + METADATA)
 # ============================================================================
 @st.cache_resource
-def load_model():
-    return joblib.load('saved_model/modelo_obesidade.joblib')
+def load_assets():
+    # Carrega o Modelo
+    try:
+        model = joblib.load('saved_model/modelo_obesidade.joblib')
+    except FileNotFoundError:
+        return None, None
+        
+    # Carrega o Metadata (Manual de Instruções)
+    try:
+        meta = joblib.load('saved_model/model_metadata.joblib')
+    except FileNotFoundError:
+        meta = None
+        
+    return model, meta
 
-try:
-    pipeline = load_model()
-except FileNotFoundError:
-    st.error("Erro crítico: Modelo não encontrado.")
+pipeline, metadata = load_assets()
+
+if not pipeline:
+    st.error("Erro crítico: Modelo (modelo_obesidade.joblib) não encontrado.")
     st.stop()
 
 # ============================================================================
@@ -303,6 +315,18 @@ if submit_button:
         'CALC': [DICT_FREQ_CALORICA[alcool_pt]],
         'MTRANS': [DICT_TRANSPORTE[transporte_pt]]
     })
+    
+    if metadata:
+        try:
+            # 1. Recupera a lista de colunas esperadas pelo modelo
+            cols_esperadas = metadata['features_expected']
+            
+            # 2. Reorganiza o DataFrame para ter EXATAMENTE a mesma ordem do treino
+            dados_entrada = dados_entrada[cols_esperadas]
+            
+        except KeyError as e:
+            st.error(f"Erro de Validação: O modelo esperava a coluna {e}, mas ela não foi gerada.")
+            st.stop()
 
     try:
         # --- PREDIÇÃO ---
@@ -411,12 +435,13 @@ if st.session_state.get('diagnostico_realizado'):
                 res['riscos'], res['protecoes'], res['sugestoes']
             )
             nome_clean = res['pdf_context']['Nome'].split()[0] if res['pdf_context']['Nome'] != "Não Informado" else "paciente"
-            st.download_button("📄 Baixar Laudo PDF", pdf_bytes, f"laudo_{nome_clean}.pdf", "application/pdf", type="primary")
+            st.download_button("Baixar Laudo PDF", pdf_bytes, f"laudo_{nome_clean}.pdf", "application/pdf", type="primary")
 
         st.markdown("#### Certeza do Modelo")
         fig_probs = px.bar(
             res['df_probs'], x='Probabilidade', y='Nome_PT', orientation='h', 
-            color='Nome_PT', color_discrete_map=CORES_OBESIDADE
+            color='Nome_PT', color_discrete_map=CORES_OBESIDADE,
+            labels={'Nome_PT': 'Diagnóstico Clínico', 'Probabilidade': 'Nível de Confiança'}
         )
         fig_probs.update_traces(texttemplate='<b>%{x:.1%}</b>', textposition='inside', textfont=dict(size=14, color='white'), insidetextfont=dict(family="Arial Black"))
         fig_probs.update_layout(showlegend=False, height=250, margin=dict(t=10, b=0), xaxis=dict(showgrid=False, tickformat=".0%"), yaxis_title=None, xaxis_title=None)
@@ -427,7 +452,7 @@ if st.session_state.get('diagnostico_realizado'):
     # ---------------------------------------------------------------------
     if res['sugestoes']:
         with st.container(border=True):
-            st.subheader("💡 Sugestões de Hábitos Saudáveis")
+            st.subheader("Sugestões de Hábitos Saudáveis")
             st.caption("Abaixo estão diretrizes gerais baseadas nos fatores de risco identificados pelo sistema.")
             for dica in res['sugestoes']:
                 st.info(dica)
@@ -436,7 +461,7 @@ if st.session_state.get('diagnostico_realizado'):
     # SHAP VISUAL
     # ---------------------------------------------------------------------
     st.markdown("###")
-    with st.expander("🔍 Por que o modelo deu esse resultado?", expanded=True):
+    with st.expander("Por que o modelo deu esse resultado?", expanded=True):
         st.markdown("""
         O gráfico abaixo mostra **quanto cada fator contribuiu (em %)** para o diagnóstico final.
         - **Vermelho:** Aumenta o risco/probabilidade.
@@ -453,7 +478,8 @@ if st.session_state.get('diagnostico_realizado'):
 
         fig_shap = px.bar(
             df_grafico, x='Impacto', y='Nome Amigável', orientation='h',
-            color='Tipo', color_discrete_map=color_map_shap
+            color='Tipo', color_discrete_map=color_map_shap,
+            labels={'Nome Amigável': 'Fator Analisado', 'Impacto': 'Influência no Resultado'}
         )
         
         fig_shap.update_traces(
