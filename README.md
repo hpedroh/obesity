@@ -69,6 +69,12 @@ Obesity/
 ├── .streamlit/                 # Configuração de tema
 ├── assets/                     # Imagens, logos e prints
 ├── data/                       # Base de dados (obesity.csv)
+├── docs/                       # (Novo) Pasta com os arquivos .md da documentação
+│   ├── index.md
+│   ├── modeling.md
+│   ├── installation.md
+│   ├── user_guide.md
+│   └── technical.md
 ├── notebooks/                  # Estudos e treinamento (Jupyter)
 ├── pages/                      # Páginas da Aplicação
 │   ├── 1_Diagnostico_Preditivo.py
@@ -80,8 +86,9 @@ Obesity/
 ├── constants.py                # Dicionários e configurações globais
 ├── Dockerfile                  # Receita para construção do container
 ├── HealthAnalytics.py          # Entrypoint (Home)
-├── README.md                   # Documentação
-├── requirements.txt            # Dependências Python
+├── mkdocs.yml                  # (Novo) Arquivo de configuração do site de doc
+├── README.md                   # Documentação (pode adicionar link para o site agora)
+├── requirements.txt            # (Atualizar) Adicionar dependências do MkDocs
 └── utils.py                    # Funções auxiliares (Menu Lateral)
 ```
 
