@@ -1,6 +1,7 @@
 # HealthAnalytics: Predição de Obesidade com IA Explicável
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://obesity-risk-app.streamlit.app/)
+[![Documentation](https://img.shields.io/badge/Docs-MkDocs-7f32a8?style=flat&logo=materialformkdocs&logoColor=white)](https://hpedroh.github.io/obesity/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.30%2B-red)
@@ -14,9 +15,13 @@
 
 ---
 
-## Acesso à Aplicação
+## Acesso à Aplicação (Live Demo)
 Acesse a aplicação online clicando no link abaixo:
 ### [**HealthAnalytics Live Demo**](https://obesity-risk-app.streamlit.app/)
+
+### Documentação Oficial
+Para detalhes de modelagem, guia de uso e instalação passo-a-passo:
+### [**Ler Documentação Completa (MkDocs)**](https://hpedroh.github.io/obesity/)
 
 ---
 
@@ -69,7 +74,7 @@ Obesity/
 ├── .streamlit/                 # Configuração de tema
 ├── assets/                     # Imagens, logos e prints
 ├── data/                       # Base de dados (obesity.csv)
-├── docs/                       # (Novo) Pasta com os arquivos .md da documentação
+├── docs/                       # Pasta com os arquivos .md da documentação
 │   ├── index.md
 │   ├── modeling.md
 │   ├── installation.md
@@ -86,9 +91,9 @@ Obesity/
 ├── constants.py                # Dicionários e configurações globais
 ├── Dockerfile                  # Receita para construção do container
 ├── HealthAnalytics.py          # Entrypoint (Home)
-├── mkdocs.yml                  # (Novo) Arquivo de configuração do site de doc
-├── README.md                   # Documentação (pode adicionar link para o site agora)
-├── requirements.txt            # (Atualizar) Adicionar dependências do MkDocs
+├── mkdocs.yml                  # Arquivo de configuração do site de doc
+├── README.md                   # Documentação
+├── requirements.txt            # Adicionar dependências do MkDocs
 └── utils.py                    # Funções auxiliares (Menu Lateral)
 ```
 
