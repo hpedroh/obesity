@@ -1,4 +1,4 @@
-# 📖 Manual de Utilização
+# :open_book: Manual de Utilização
 
 Este guia ensina a navegar pelas três ferramentas principais do sistema.
 
@@ -12,6 +12,8 @@ Acesse a página **"Diagnóstico Preditivo"** no menu lateral.
     * O sistema exibirá a classificação (ex: Obesidade Tipo I) no topo.
     * **Gráfico de Barras (SHAP):** As barras **vermelhas** são o que você deve aconselhar o paciente a mudar. As **verdes** são o que ele deve manter.
 4.  **Exportar:** Clique em `Baixar Laudo PDF` para gerar o documento físico.
+
+![Demonstração do Diagnóstico](assets/demo_diagnostico.gif){: align=center width="700" }
 
 !!! tip "Dica Prática"
     O PDF gerado já inclui "Sugestões de Hábitos" baseadas especificamente nos riscos encontrados. Use isso como base para sua prescrição médica.
@@ -29,9 +31,13 @@ Acesse a página **"Dashboard Analítico"**. Esta área é para ver o "todo".
     * **Fatores de Risco:** Veja correlações. Ex: O Mapa de Calor mostra se quem bebe mais álcool tende a ter peso maior.
     * **Explorador:** Crie seus próprios gráficos escolhendo os eixos X e Y.
 
+![Navegação no Dashboard](assets/demo_dashboard.gif){: align=center width="700" }
+
 ---
 
 ## 3. Auditando o Modelo (Técnico)
 
 Acesse **"Performance do Modelo"**.
 Use esta página para garantir que a IA não está "alucinando". Verifique a **Matriz de Confusão** para entender se o modelo está tendencioso para alguma classe específica.
+
+![Matriz de Confusão na Tela](assets/matriz_confusao.png){: align=center width="600" }

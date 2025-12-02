@@ -3,9 +3,11 @@
 !!! info "O que é este projeto?"
     O **HealthAnalytics** é uma plataforma de inteligência artificial focada na **saúde preventiva**. Ele não apenas diz *se* um paciente tem risco de obesidade, mas explica *por que*, utilizando algoritmos explicáveis (XAI) para gerar confiança clínica.
 
+![Tela Inicial do Sistema](assets/home_app.gif){ align=center }
+
 ---
 
-## 🚀 Por que este sistema é diferente?
+## :rocket: Por que este sistema é diferente?
 
 A maioria das calculadoras de saúde entrega apenas um número (IMC). O HealthAnalytics entrega **contexto**.
 
@@ -22,7 +24,7 @@ A maioria das calculadoras de saúde entrega apenas um número (IMC). O HealthAn
 
 </div>
 
-## 🧭 Como navegar nesta documentação?
+## :compass: Como navegar nesta documentação?
 
 | Se você é... | Vá para... |
 | :--- | :--- |

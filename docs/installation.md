@@ -1,10 +1,10 @@
-# ⚙️ Guia de Instalação e Execução
+# :gear: Guia de Instalação e Execução
 
 Você pode executar o HealthAnalytics de duas formas. Escolha a que melhor se adapta ao seu perfil técnico.
 
 ## Escolha seu método
 
-=== "🐳 Via Docker (Recomendado)"
+=== ":whale: Via Docker (Recomendado)"
 
     Esta é a forma mais simples e garante que tudo funcione sem conflitos de versão, pois usamos um container isolado.
 
@@ -12,7 +12,7 @@ Você pode executar o HealthAnalytics de duas formas. Escolha a que melhor se ad
 
     1.  **Clone o projeto:**
         ```bash
-        git clone [https://github.com/hpedroh/obesity.git](https://github.com/hpedroh/obesity.git)
+        git clone https://github.com/hpedroh/obesity.git
         cd obesity
         ```
 
@@ -26,17 +26,17 @@ Você pode executar o HealthAnalytics de duas formas. Escolha a que melhor se ad
         docker run -d -p 8501:8501 --name health-app health-analytics
         ```
 
-    ➡️ **Acesse:** Abra seu navegador em `http://localhost:8501`
+    :arrow_right: **Acesse:** Abra seu navegador em `http://localhost:8501`
 
-=== "🐍 Instalação Local (Python)"
+=== ":snake: Instalação Local (Python)"
 
     Ideal se você deseja editar o código ou não tem Docker.
 
-    **Pré-requisitos:** Python 3.11 ou superior.
+    **Pré-requisitos:** Python 3.12 ou superior.
 
     1.  **Clone e entre na pasta:**
         ```bash
-        git clone [https://github.com/hpedroh/obesity.git](https://github.com/hpedroh/obesity.git)
+        git clone https://github.com/hpedroh/obesity.git
         cd obesity
         ```
 

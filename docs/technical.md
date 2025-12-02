@@ -1,4 +1,4 @@
-# 🛠️ Detalhes Técnicos e Arquitetura
+# :hammer_and_wrench: Detalhes Técnicos e Arquitetura
 
 Documentação voltada para desenvolvedores que desejam manter ou expandir o HealthAnalytics.
 
@@ -40,16 +40,57 @@ Obesity/
 - Frontend: Streamlit (Python puro). Escolhido pela rapidez de desenvolvimento e suporte nativo a dados.
 - Backend/ML: Scikit-Learn 1.5+.
 - Visualização: Plotly (Gráficos interativos) e Matplotlib/SHAP (Gráficos estáticos de explicabilidade).
-- Containerização: Docker (Alpine Linux base para Python).
+- Containerização: Docker (Debian Slim base para Python).
 
 ## Pipeline de Dados
 
-O arquivo `modelo_obesidade.joblib` contém um Pipeline completo que executa:
+O arquivo `modelo_obesidade.joblib` contém um Pipeline completo que processa os dados antes da predição:
 
-1. OneHotEncoder: Para variáveis categóricas (ex: Gênero, Transporte).
-2. OrdinalEncoder: Para variáveis com hierarquia (ex: "Nunca" < "Às vezes" < "Sempre").
-3. Scaler: Normalização de dados numéricos.
-4. Estimator: O classificador Random Forest.
+```mermaid
+graph TD
+    A[Dados Brutos do Usuário] --> B{Column Transformer}
+    
+    subgraph Pré-Processamento
+        B -->|Variáveis Numéricas| C[Standard Scaler]
+        B -->|Categóricas Nominais| D[OneHot Encoder]
+        B -->|Categóricas Ordinais| E[Ordinal Encoder]
+    end
+    
+    C --> F[Vetor de Features Processadas]
+    D --> F
+    E --> F
+    
+    F --> G[Random Forest Classifier]
+    G --> H((Predição Final))
+```
+
+### Componentes do Pipeline:
+
+- OneHotEncoder: Aplicado em variáveis sem ordem intrínseca (ex: Gênero, Transporte).
+- OrdinalEncoder: Aplicado em variáveis hierárquicas (ex: Consumo de Água, onde "Menos de 1L" < "Mais de 2L").
+- Scaler: Normalização de dados numéricos para manter a escala (ex: Idade, Peso).
+- Estimator: O classificador Random Forest que recebe o vetor denso final.
+
+## Arquitetura de Execução
+
+O diagrama abaixo ilustra como a aplicação é servida para o usuário final via Docker.
+
+```mermaid
+graph LR
+    User((Usuário)) -->|Acessa Porta 8501| Browser[Navegador Web]
+    
+    subgraph Servidor / Nuvem
+        Browser -->|HTTP| Docker[Container Docker]
+        
+        subgraph Container HealthAnalytics
+            Docker --> App[Streamlit App]
+            App -->|Carrega| Model[Modelo .joblib]
+            App -->|Gera| PDF[Relatório PDF]
+        end
+    end
+    
+    PDF -->|Download| Browser
+```
 
 !!! failure "Ponto de Atenção"
     Ao alterar o `HealthAnalytics.py` ou criar novas páginas, lembre-se de importar `sidebar_navegacao` de `utils.py` para manter o menu consistente em todas as telas.
