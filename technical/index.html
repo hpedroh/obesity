@@ -562,6 +562,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Pipeline de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-do-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes do Pipeline:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitetura de Execução
+      
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -629,6 +657,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Pipeline de Dados">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-do-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Componentes do Pipeline:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arquitetura-de-execucao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arquitetura de Execução
+      
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -651,7 +707,7 @@
   
 
 
-<h1 id="detalhes-tecnicos-e-arquitetura">🛠️ Detalhes Técnicos e Arquitetura</h1>
+<h1 id="detalhes-tecnicos-e-arquitetura"><img alt="🛠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f6e0.svg" title=":hammer_and_wrench:" /> Detalhes Técnicos e Arquitetura</h1>
 <p>Documentação voltada para desenvolvedores que desejam manter ou expandir o HealthAnalytics.</p>
 <h2 id="estrutura-de-arquivos">Estrutura de Arquivos</h2>
 <p>O projeto segue o padrão multipage do Streamlit.</p>
@@ -687,16 +743,48 @@
 <li>Frontend: Streamlit (Python puro). Escolhido pela rapidez de desenvolvimento e suporte nativo a dados.</li>
 <li>Backend/ML: Scikit-Learn 1.5+.</li>
 <li>Visualização: Plotly (Gráficos interativos) e Matplotlib/SHAP (Gráficos estáticos de explicabilidade).</li>
-<li>Containerização: Docker (Alpine Linux base para Python).</li>
+<li>Containerização: Docker (Debian Slim base para Python).</li>
 </ul>
 <h2 id="pipeline-de-dados">Pipeline de Dados</h2>
-<p>O arquivo <code>modelo_obesidade.joblib</code> contém um Pipeline completo que executa:</p>
-<ol>
-<li>OneHotEncoder: Para variáveis categóricas (ex: Gênero, Transporte).</li>
-<li>OrdinalEncoder: Para variáveis com hierarquia (ex: "Nunca" &lt; "Às vezes" &lt; "Sempre").</li>
-<li>Scaler: Normalização de dados numéricos.</li>
-<li>Estimator: O classificador Random Forest.</li>
-</ol>
+<p>O arquivo <code>modelo_obesidade.joblib</code> contém um Pipeline completo que processa os dados antes da predição:</p>
+<pre class="mermaid"><code>graph TD
+    A[Dados Brutos do Usuário] --&gt; B{Column Transformer}
+
+    subgraph Pré-Processamento
+        B --&gt;|Variáveis Numéricas| C[Standard Scaler]
+        B --&gt;|Categóricas Nominais| D[OneHot Encoder]
+        B --&gt;|Categóricas Ordinais| E[Ordinal Encoder]
+    end
+
+    C --&gt; F[Vetor de Features Processadas]
+    D --&gt; F
+    E --&gt; F
+
+    F --&gt; G[Random Forest Classifier]
+    G --&gt; H((Predição Final))</code></pre>
+<h3 id="componentes-do-pipeline">Componentes do Pipeline:</h3>
+<ul>
+<li>OneHotEncoder: Aplicado em variáveis sem ordem intrínseca (ex: Gênero, Transporte).</li>
+<li>OrdinalEncoder: Aplicado em variáveis hierárquicas (ex: Consumo de Água, onde "Menos de 1L" &lt; "Mais de 2L").</li>
+<li>Scaler: Normalização de dados numéricos para manter a escala (ex: Idade, Peso).</li>
+<li>Estimator: O classificador Random Forest que recebe o vetor denso final.</li>
+</ul>
+<h2 id="arquitetura-de-execucao">Arquitetura de Execução</h2>
+<p>O diagrama abaixo ilustra como a aplicação é servida para o usuário final via Docker.</p>
+<pre class="mermaid"><code>graph LR
+    User((Usuário)) --&gt;|Acessa Porta 8501| Browser[Navegador Web]
+
+    subgraph Servidor / Nuvem
+        Browser --&gt;|HTTP| Docker[Container Docker]
+
+        subgraph Container HealthAnalytics
+            Docker --&gt; App[Streamlit App]
+            App --&gt;|Carrega| Model[Modelo .joblib]
+            App --&gt;|Gera| PDF[Relatório PDF]
+        end
+    end
+
+    PDF --&gt;|Download| Browser</code></pre>
 <div class="admonition failure">
 <p class="admonition-title">Ponto de Atenção</p>
 <p>Ao alterar o <code>HealthAnalytics.py</code> ou criar novas páginas, lembre-se de importar <code>sidebar_navegacao</code> de <code>utils.py</code> para manter o menu consistente em todas as telas.</p>

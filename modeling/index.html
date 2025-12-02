@@ -472,6 +472,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. O Algoritmo: Random Forest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-define-o-risco-feature-importance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que define o risco? (Feature Importance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -483,6 +500,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. Performance Real (Dados de Teste)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detalhamento-por-classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detalhamento por Classe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onde-o-modelo-confunde-matriz-de-confusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde o modelo confunde? (Matriz de Confusão)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -493,6 +538,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="4. Explicabilidade (XAI com SHAP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-ler-este-grafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como ler este gráfico?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -631,6 +693,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. O Algoritmo: Random Forest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#o-que-define-o-risco-feature-importance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        O que define o risco? (Feature Importance)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -642,6 +721,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3. Performance Real (Dados de Teste)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detalhamento-por-classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detalhamento por Classe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onde-o-modelo-confunde-matriz-de-confusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onde o modelo confunde? (Matriz de Confusão)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -652,6 +759,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="4. Explicabilidade (XAI com SHAP)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#como-ler-este-grafico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Como ler este gráfico?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -675,16 +799,16 @@
   
 
 
-<h1 id="inteligencia-e-modelagem">🧠 Inteligência e Modelagem</h1>
+<h1 id="inteligencia-e-modelagem"><img alt="🧠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f9e0.svg" title=":brain:" /> Inteligência e Modelagem</h1>
 <p>Nesta seção, abrimos a "caixa preta" do sistema. Explicamos como o algoritmo toma decisões e qual a confiabilidade esperada.</p>
 <h2 id="1-o-desafio-alem-do-binario">1. O Desafio: Além do Binário</h2>
 <p>A obesidade não é apenas "Sim" ou "Não". É um espectro.
 O modelo foi treinado para identificar <strong>7 categorias distintas</strong> de classificação corporal, permitindo uma triagem muito mais precisa:</p>
 <ul>
-<li>🟢 <strong>Peso Insuficiente</strong></li>
-<li>🟢 <strong>Peso Normal</strong></li>
-<li>🟡 <strong>Sobrepeso</strong> (Nível I e II)</li>
-<li>🔴 <strong>Obesidade</strong> (Tipo I, II e III)</li>
+<li><img alt="🟡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e1.svg" title=":yellow_circle:" /> <strong>Peso Insuficiente</strong></li>
+<li><img alt="🟢" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e2.svg" title=":green_circle:" /> <strong>Peso Normal</strong></li>
+<li><img alt="🟠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f7e0.svg" title=":orange_circle:" /> <strong>Sobrepeso</strong> (Nível I e II)</li>
+<li><img alt="🔴" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f534.svg" title=":red_circle:" /> <strong>Obesidade</strong> (Tipo I, II e III)</li>
 </ul>
 <h2 id="2-o-algoritmo-random-forest">2. O Algoritmo: Random Forest</h2>
 <p>O modelo escolhido foi o <strong>Random Forest Classifier</strong> (Floresta Aleatória) por ser um algoritmo robusto que combina múltiplas árvores de decisão.</p>
@@ -692,6 +816,9 @@ O modelo foi treinado para identificar <strong>7 categorias distintas</strong> d
 <p class="admonition-title">Por que Random Forest?</p>
 <p>Diferente de modelos lineares, ele entende relações complexas (ex: <em>comer pouco mas ser sedentário</em> vs. <em>comer muito mas ser atleta</em>). Além disso, possui alta resistência a <em>overfitting</em> quando bem calibrado.</p>
 </div>
+<h3 id="o-que-define-o-risco-feature-importance">O que define o risco? (Feature Importance)</h3>
+<p>Antes de olhar os acertos, é importante entender o que o modelo prioriza. O gráfico abaixo mostra as variáveis com maior peso na decisão matemática:</p>
+<p><img align="center" alt="Importância das Variáveis" src="../assets/feature_importance.png" /></p>
 <h2 id="3-performance-real-dados-de-teste">3. Performance Real (Dados de Teste)</h2>
 <p>É crucial ser transparente sobre a precisão. Nos testes realizados com 20% dos dados (que o modelo nunca viu antes), obtivemos:</p>
 <table>
@@ -715,17 +842,32 @@ O modelo foi treinado para identificar <strong>7 categorias distintas</strong> d
 </tr>
 </tbody>
 </table>
+<h3 id="detalhamento-por-classe">Detalhamento por Classe</h3>
+<p>Aqui vemos a performance isolada. Note como o modelo é extremamente preciso nas categorias extremas (Magreza e Obesidade III), indicadas pelas cores mais verdes.</p>
+<p><img align="center" alt="Relatório de Métricas" src="../assets/report_metrics.png" width="600" /></p>
+<h3 id="onde-o-modelo-confunde-matriz-de-confusao">Onde o modelo confunde? (Matriz de Confusão)</h3>
+<p>A matriz abaixo cruza o <strong>Valor Real</strong> (Eixo Y) com a <strong>Predição do Modelo</strong> (Eixo X). A linha diagonal escura representa os acertos.</p>
+<p><img align="center" alt="Matriz de Confusão" src="../assets/matriz_confusao.png" width="500" /></p>
 <div class="admonition warning">
-<p class="admonition-title">Onde o modelo confunde?</p>
-<p>A matriz de confusão mostra que a maior parte dos erros ocorre entre categorias vizinhas (ex: classificar <em>Sobrepeso I</em> como <em>Sobrepeso II</em>). Erros grotescos (ex: classificar <em>Obeso</em> como <em>Magro</em>) são virtualmente inexistentes.</p>
+<p class="admonition-title">Análise de Erros</p>
+<p>A matriz mostra que a maior parte dos erros (manchas azuis fora da diagonal) ocorre entre <strong>categorias vizinhas</strong> (ex: classificar <em>Sobrepeso I</em> como <em>Sobrepeso II</em>). Erros graves, como confundir <em>Obeso</em> com <em>Magro</em>, são virtualmente inexistentes.</p>
 </div>
 <h2 id="4-explicabilidade-xai-com-shap">4. Explicabilidade (XAI com SHAP)</h2>
-<p>Não basta acertar, é preciso explicar. Utilizamos a biblioteca <strong>SHAP</strong> para calcular a contribuição marginal de cada resposta.</p>
+<p>Enquanto os gráficos anteriores mostram a performance geral, o <strong>SHAP Waterfall</strong> explica a decisão para <strong>um paciente específico</strong>.</p>
+<p>O gráfico abaixo mostra matematicamente o "cabo de guerra" entre os hábitos do paciente:</p>
+<p><img align="center" alt="Explicabilidade com SHAP" src="../assets/shap_waterfall.png" width="600" /></p>
+<h3 id="como-ler-este-grafico">Como ler este gráfico?</h3>
 <ul>
-<li><strong>Impacto Positivo (+):</strong> Hábitos que empurram o diagnóstico para obesidade (ex: Histórico Familiar, Alta Ingestão Calórica).</li>
-<li><strong>Impacto Negativo (-):</strong> Fatores de proteção (ex: Alto consumo de vegetais, Atividade Física).</li>
+<li><img alt="🔴" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f534.svg" title=":red_circle:" /> <strong>Barras Vermelhas (Direita):</strong> Fatores que <strong>aumentaram</strong> o risco (puxaram a probabilidade para cima).<ul>
+<li><em>Exemplo:</em> No gráfico, o <code>Histórico Familiar</code> e o <code>Peso</code> alto empurram o diagnóstico para Obesidade.</li>
 </ul>
-<p>Essa abordagem transforma a IA em uma ferramenta educativa para o paciente.</p>
+</li>
+<li><img alt="🔵" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f535.svg" title=":blue_circle:" /> <strong>Barras Azuis (Esquerda):</strong> Fatores que <strong>diminuíram</strong> o risco (puxaram a probabilidade para baixo).<ul>
+<li><em>Exemplo:</em> O hábito de não fumar (<code>Fumante: Não</code>) ou comer vegetais atuou como proteção.</li>
+</ul>
+</li>
+</ul>
+<p>O valor <code>E[f(x)]</code> na base é a probabilidade média da população. O valor <code>f(x)</code> no topo é a probabilidade final deste paciente (ex: 95% de chance de ser Obeso).</p>
 
 
 
