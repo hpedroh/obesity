@@ -25,15 +25,6 @@ Para detalhes de modelagem, guia de uso e instalação passo-a-passo:
 
 ---
 
-## Visão Geral do Projeto
-
-| Diagnóstico Preditivo |
-|:---:|
-| ![Diagnóstico](assets/Diagnostico-Preditivo.png) |
-| *Previsão de risco com IA e geração de PDF* |
-
----
-
 ## Sobre o Projeto
 
 Este projeto tem como objetivo auxiliar profissionais de saúde na **identificação precoce de riscos relacionados à obesidade**. Diferente de calculadoras de IMC comuns, este sistema utiliza Machine Learning para analisar padrões comportamentais e genéticos.
@@ -75,6 +66,7 @@ Obesity/
 ├── assets/                     # Imagens, logos e prints
 ├── data/                       # Base de dados (obesity.csv)
 ├── docs/                       # Pasta com os arquivos .md da documentação
+│   ├── assets/                 # Imagens da documentação
 │   ├── index.md
 │   ├── modeling.md
 │   ├── installation.md
@@ -160,4 +152,4 @@ http://localhost:8501
 
 Este projeto está sob a licença MIT. Sinta-se à vontade para contribuir ou utilizar para fins educacionais.
 
-<div align="center"> <p>Desenvolvido por <b>Pedro Henrique</b></p> <p><i>Tech Challenge - Data Analytics</i></p> </div>
+<div align="center"> <p>Desenvolvido por <b>Pedro Alves</b></p> <p><i>Tech Challenge - Data Analytics</i></p> </div>
