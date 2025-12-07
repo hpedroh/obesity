@@ -13,6 +13,7 @@ Obesity/
 ├── assets/                     # Imagens, logos e prints
 ├── data/                       # Base de dados (obesity.csv)
 ├── docs/                       # Pasta com os arquivos .md da documentação
+│   ├── assets/                 # Imagens da documentação
 │   ├── index.md
 │   ├── modeling.md
 │   ├── installation.md
