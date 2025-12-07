@@ -2,7 +2,7 @@
 
 Este guia ensina a navegar pelas três ferramentas principais do sistema.
 
-## 1. Realizando um Diagnóstico (Clínico)
+## Realizando um Diagnóstico (Clínico)
 
 Acesse a página **"Diagnóstico Preditivo"** no menu lateral.
 
@@ -16,11 +16,11 @@ Acesse a página **"Diagnóstico Preditivo"** no menu lateral.
 ![Demonstração do Diagnóstico](assets/demo_diagnostico.gif){: align=center width="700" }
 
 !!! tip "Dica Prática"
-    O PDF gerado já inclui "Sugestões de Hábitos" baseadas especificamente nos riscos encontrados. Use isso como base para sua prescrição médica.
+    O PDF gerado já inclui "Sugestões de Hábitos" baseadas especificamente nos riscos encontrados.
 
 ---
 
-## 2. Explorando Dados (Analista)
+## Explorando Dados (Analista)
 
 Acesse a página **"Dashboard Analítico"**. Esta área é para ver o "todo".
 
@@ -35,7 +35,7 @@ Acesse a página **"Dashboard Analítico"**. Esta área é para ver o "todo".
 
 ---
 
-## 3. Auditando o Modelo (Técnico)
+## Auditando o Modelo (Técnico)
 
 Acesse **"Performance do Modelo"**.
 Use esta página para garantir que a IA não está "alucinando". Verifique a **Matriz de Confusão** para entender se o modelo está tendencioso para alguma classe específica.

@@ -35,13 +35,13 @@ def sidebar_topo():
     
     st.sidebar.page_link(
         "pages/1_Diagnostico_Preditivo.py", 
-        label="Diagnóstico IA", 
+        label="Diagnóstico Preditivo", 
         use_container_width=True
     )
     
     st.sidebar.page_link(
         "pages/2_Dashboard_Analitico.py", 
-        label="Dashboard e KPIs", 
+        label="Dashboard Analítico", 
         use_container_width=True
     )
     

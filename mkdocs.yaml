@@ -8,6 +8,7 @@ theme:
   language: pt
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - content.code.copy
   palette:
     # 1. Configuração automática para quem usa MODO CLARO no sistema

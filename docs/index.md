@@ -14,12 +14,15 @@ A maioria das calculadoras de saúde entrega apenas um número (IMC). O HealthAn
 <div class="grid cards" markdown>
 
 -   :material-brain: **Inteligência Artificial Explicável**
+
     Utilizamos SHAP para mostrar matematicamente quais hábitos (como consumo de água ou vegetais) estão aumentando ou diminuindo o risco do paciente.
 
 -   :material-file-document: **Automação de Documentos**
+
     Transforme dados em laudos médicos (PDF) prontos para impressão em segundos, padronizando o atendimento.
 
 -   :material-chart-bar: **Análise Populacional**
+
     Um dashboard de Business Intelligence integrado para entender tendências demográficas e comportamentais em grandes grupos.
 
 </div>
