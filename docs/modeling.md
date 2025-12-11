@@ -25,7 +25,7 @@ Antes de olhar os acertos, é importante entender o que o modelo prioriza. O gr�
 
 ## Performance Real (Dados de Teste)
 
-É crucial ser transparente sobre a precisão. Nos testes realizados com 20% dos dados (que o modelo nunca viu antes), obtivemos:
+É crucial ser transparente sobre a precisão. Nos testes realizados com 30% dos dados (que o modelo nunca viu antes), obtivemos:
 
 | Métrica | Resultado | O que significa? |
 | :--- | :--- | :--- |

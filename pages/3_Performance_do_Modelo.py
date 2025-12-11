@@ -19,7 +19,7 @@ sidebar_topo()
 st.title("Performance e Validação do Modelo")
 st.markdown("""
 Esta página apresenta as métricas técnicas do modelo de **Random Forest** utilizado no sistema. 
-Os dados apresentados referem-se ao **Conjunto de Teste (20% dos dados)**, que o modelo não viu durante o treinamento.
+Os dados apresentados referem-se ao **Conjunto de Teste (30% dos dados)**, que o modelo não viu durante o treinamento.
 """)
 
 # ============================================================================
@@ -62,7 +62,7 @@ if df is not None:
     X = df.drop('Obesity', axis=1)
     y = df['Obesity']
     
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
     
     y_pred = pipeline.predict(X_test)
     
